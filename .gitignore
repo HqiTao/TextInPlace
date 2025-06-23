@@ -1,0 +1,18 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+
+# C extensions
+*.so
+*.o
+*.nfs*
+
+# Distribution / packaging
+*pretrained/
+*.egg-info
+build
+pretrained
+checkpoints
+output
+logs
+vis
