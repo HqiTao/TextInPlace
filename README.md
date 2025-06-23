@@ -54,7 +54,7 @@ python setup.py build develop
 
 #### Maze-with-Text Dataset
 
-To bridge the gap between current text-based repetitive indoor scene datasets and the typical scenarios encountered in robot navigation, we establish an indoor VPR benchmark dataset, called Maze-with-Text. First, we use a handheld Insta360 One X3 spherical camera to record videos with a resolution of 3840 × 1920 across five floors. On each floor, two videos are captured along approximately the same trajectory at different times, serving as the query and database sets, respectively. The number of images in the Maze-with-Text dataset is as follows：
+To bridge the gap between current text-based repetitive indoor scene datasets and the typical scenarios encountered in robot navigation, we establish an indoor VPR benchmark dataset, called Maze-with-Text. The number of images in the Maze-with-Text dataset is as follows：
 
 | **Floor** | 1 | 2 | 3 | 4 | 5 | All |
 |:----------------:|:-:|:-:|:-:|:-:|:--:|:--:|
@@ -66,14 +66,14 @@ After downloading, please unzip the archive and organize the dataset into the fo
 
 ```
 |-- Maze-with-Text
-  |-- images
-      |-- test
-          |-- database
-          |   |-- @-00.0027@038.6324@5@339@0@.jpg
-              ......
-          |-- queries
-          |   |-- @-00.0012@032.7272@5@65@3@.jpg
-              ......
+    |-- images
+        |-- test
+            |-- database
+            |   |-- @-00.0027@038.6324@5@339@0@.jpg
+                ......
+            |-- queries
+            |   |-- @-00.0012@032.7272@5@65@3@.jpg
+                ......
 ```
 
 #### Evaluation
