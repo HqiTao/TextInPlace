@@ -1,6 +1,6 @@
 <div align="center">
 <h1> TextInPlace</h1>
-</div
+</div>
 
 <div align="center">
 <h6>🌟 If this work is useful to you, please give this repository a Star! 🌟</h6>
@@ -96,7 +96,7 @@ Before running the evaluation script, please follow the steps below to validate 
 
 - **File Placement**: Move the downloaded checkpoint file to the designated path: `./checkpoints/`.
 
-(Optional) If you want to use an LLM for text-based reranking, please set your own API key in `utils/test.py` and add `--use-llm` flag at the end of the command.
+(Optional) If you want to use an LLM for text-based reranking, please set your own API key in [utils/test.py](https://github.com/HqiTao/TextInPlace/blob/main/utils/test.py#L209-L210) and add `--use-llm` flag at the end of the command.
 
 #### Training
 
