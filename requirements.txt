@@ -17,3 +17,5 @@ rapidfuzz==2.13.7
 faiss-cpu==1.7.4
 omegaconf==2.3.0
 openai==1.61.1 
+pytorch-metric-learning==2.8.1
+pandas==2.2.3

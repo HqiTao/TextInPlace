@@ -70,10 +70,10 @@ After downloading, please unzip the archive and organize the dataset into the fo
         |-- test
             |-- database
             |   |-- @-00.0027@038.6324@5@339@0@.jpg
-                ......
+                ...
             |-- queries
             |   |-- @-00.0012@032.7272@5@65@3@.jpg
-                ......
+                ...
 ```
 
 #### Evaluation
@@ -90,19 +90,70 @@ python -W ignore eval.py --backbone ResNet50 --aggregation boq \
   --resume <Path with the checkpoint>
 ```
 
-Before running the evaluation script, please follow the steps below to validate the results of our experiments on the Maze-with-Text dataset.
+Before running the evaluation script, please follow the steps below.
 
 - **Download Checkpoint**: Get the [checkpoint](https://drive.google.com/file/d/1fJaaLta9mJfOwALjMg63c8oXNpm3Y_Q0/view?usp=drive_link) file.
 
 - **File Placement**: Move the downloaded checkpoint file to the designated path: `./checkpoints/`.
 
-(Optional) If you want to use an LLM for text-based reranking, please set your own API key in [utils/test.py](https://github.com/HqiTao/TextInPlace/blob/main/utils/test.py#L209-L210) and add `--use-llm` flag at the end of the command.
+(Optional) If you want to use an LLM for text-based reranking, please set your own API key in [utils/test.py](https://github.com/HqiTao/TextInPlace/blob/main/utils/test.py#L209-L210) and add `--use_llm` flag at the end of the command.
 
 #### Training
 
-> [!NOTE] 
-> 
-> Training code will come soon, please stay tuned.
+TextInPlace needs to train its VPR branch, while its STS branch is adopted from [Bridging-Text-Spotting](https://github.com/mxin262/Bridging-Text-Spotting).
+We employ a two-phase training strategy, beginning with training on a large-scale outdoor data and subsequently fine-tuning it using indoor data.
+
+Training script
+
+```shell
+Bash train.sh
+```
+
+Before running the training script, please follow the steps below.
+
+
+- **Download Checkpoint**: Get the [checkpoint](https://drive.google.com/file/d/15GnzJx_Cd0gKHGUzam5zcEFiPwbBOT-D/view?usp=sharing) of the STS branch, and place it in the designated path: `./checkpoints/pretrain/BTS`.
+
+- **Dataset Preparation**: 
+1. Download [GSV-Cities](https://github.com/amaralibey/gsv-cities) dataset in the [datasets_folder](https://github.com/HqiTao/TextInPlace/blob/main/utils/parser.py#L107).
+
+```
+|-- gsv_cities
+    |-- Dataframes
+        |-- Boston
+          ├── ...
+          ├── Boston_0000001_2007_09_119_42.32195180265299_-71.1349467783536_k6Bs7PgCwPKNLkiPKyBx3A.jpg
+          ├── ...
+        |-- ...
+    |-- Images
+        |-- Boston.csv
+        |-- ...
+```
+
+2. Download [NAVER LABS Indoor Localization Dataset](https://naverlabs.com/datasets/requestDataset) in the [datasets_folder](https://github.com/HqiTao/TextInPlace/blob/main/utils/parser.py#L107).
+
+```
+|-- NL-Indoor
+    |-- GangnamStation
+        |-- B1
+          ├── release
+            ├── mapping
+              ├── sensors
+                ├── ...
+        |-- B2
+          ├── ...
+    |-- HyundaiDepartmentStore
+        |-- 1F
+          ├── ...
+        |-- 4F
+          ├── ...
+        |-- B1
+          ├── ...
+```
+
+3. Reformat the indoor data into the GSV-Cities format.
+
+Coming soon...
 
 ## Citation
 
@@ -113,6 +164,7 @@ If you find TextInPlace helpful for your research, please consider citing:
   title={TextInPlace: Indoor Visual Place Recognition in Repetitive Structures with Scene Text Spotting and Verification},
   author={Tao, Huaqi and Liu, Bingxi and Chen, Calvin and Huang, Tingjun and Li, He and Cui, Jinqiang and Zhang, Hong},
   booktitle={2025 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  pages={11081–11088},
   year={2025},
   organization={IEEE}
 }
@@ -120,6 +172,6 @@ If you find TextInPlace helpful for your research, please consider citing:
 
 ## Acknowledgement
 
-- Thanks to these great repositories: [Bag-of-Queries](https://github.com/amaralibey/Bag-of-Queries), [SuperPlace](https://github.com/BinuxLiu/SuperPlace), [NYC-Indoor-VPR](https://github.com/ai4ce/NYC-Indoor-VPR), [Bridging-Text-Spotting](https://github.com/mxin262/Bridging-Text-Spotting), [DPText-DETR](https://github.com/ymy-k/DPText-DETR/tree/main), [DiG](https://github.com/ayumiymk/DiG) and many other inspiring works in the community.
+- Thanks to these great repositories: [Bag-of-Queries](https://github.com/amaralibey/Bag-of-Queries), [SuperPlace](https://github.com/BinuxLiu/SuperPlace), [NYC-Indoor-VPR](https://github.com/ai4ce/NYC-Indoor-VPR), [TXTLCD](https://github.com/TongxingJin/TXTLCD), [Bridging-Text-Spotting](https://github.com/mxin262/Bridging-Text-Spotting), [DPText-DETR](https://github.com/ymy-k/DPText-DETR/tree/main), [DiG](https://github.com/ayumiymk/DiG) and many other inspiring works in the community.
 
 - Contact: `taohq2024@mail.sustech.edu.cn`.
